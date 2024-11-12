@@ -20,6 +20,7 @@ body {
     background-color: var(--secondary-color);
     color: var(--text-color);
     line-height: 1.6;
+    cursor: none; /* Hide default cursor */
 }
 
 /* Utility Classes */
@@ -860,5 +861,56 @@ footer {
     100% {
         transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
+    }
+}
+
+/* Custom Cursor Styles */
+body {
+    cursor: none;
+}
+
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    will-change: transform;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+}
+
+.cursor-outline {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(107, 44, 245, 0.2);
+    transition: transform 0.1s ease;
+}
+
+/* Hover state */
+.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+    
+    body {
+        cursor: auto;
+    }
+    
+    a, button, input, textarea {
+        cursor: pointer;
     }
 }
